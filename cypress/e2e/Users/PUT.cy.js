@@ -2,7 +2,7 @@ import 'cypress-mochawesome-reporter/register';
 import { faker } from '@faker-js/faker';
 
 class SubjectApi {
-    requestHTTP = ({method, url, body}) => {
+    requestHTTP = ( {method, url, body }) => {
         return () => {
             return cy.api({
                 method,
@@ -22,7 +22,7 @@ describe("Method PuT", () => {
             password: faker.internet.password()
         }
         const requestPUT = api.requestHTTP({
-            method: "PUT",
+            method: "PUT ",
             url: "/Users/1",
             body: ChengeUser
         })
