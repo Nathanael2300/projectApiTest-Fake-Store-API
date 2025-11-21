@@ -1,0 +1,26 @@
+{
+  "name": "projectapitest-fake-store-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nathanael2300/projectApiTest-Fake-Store-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nathanael2300/projectApiTest-Fake-Store-API/issues"
+  },
+  "homepage": "https://github.com/Nathanael2300/projectApiTest-Fake-Store-API#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^10.1.0",
+    "cypress": "^15.6.0",
+    "cypress-mochawesome-reporter": "^4.0.2",
+    "cypress-plugin-api": "^2.11.2"
+  }
+}
