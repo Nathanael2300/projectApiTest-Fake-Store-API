@@ -16,7 +16,7 @@ class SubjectApi {
 describe("Method POST", () => {
     it("Should create a user", () => {
         const api = new SubjectApi()
-        const createUser = {
+        const PostUser = {
             username: faker.internet.username(),
             email: faker.internet.email(),
             password: faker.internet.password()
@@ -24,9 +24,9 @@ describe("Method POST", () => {
         const requestPOST = api.requestHTTP({
             method: "POST",
             url: "/Users",
-            body: createUser
+            body: PostUser
         
-        })
+        });
         
         return requestPOST().then((res) => {
             cy.wrap(res.status).should("eq", 201)
@@ -40,7 +40,7 @@ describe("Method POST", () => {
             })
             return requestGET().then((res) => {
                 cy.wrap(res.status).should("eq", 200)
-            })
-        })
+            });
+        });
     });
 });
