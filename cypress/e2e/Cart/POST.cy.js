@@ -27,10 +27,10 @@ describe("Method POST", () => {
             method: "POST",
             url: "/carts",
             body: createProduct
-        })
+        });
         return requestPOST().then((res) => {
             cy.wrap(res.status).should("eq", 201)
             cy.wrap(res.body).should("have.keys", ["id", "userId", "products"])
-        })
+        });
     });
 });

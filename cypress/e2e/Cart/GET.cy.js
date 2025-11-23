@@ -30,7 +30,7 @@ describe("Method GET", () => {
                 ]);
             }
             cy.log("Quantidade de produtos:", res.body.length)
-        })
+        });
     });
 
     it("Should get a product from the cart", () => {
