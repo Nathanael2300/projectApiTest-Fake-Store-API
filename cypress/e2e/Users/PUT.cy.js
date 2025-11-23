@@ -14,9 +14,9 @@ class SubjectApi {
 }
 
 describe("Method PuT", () => {
-    it("Should chenge data of a user", () => {
+    it("Should change data of the user", () => {
         const api = new SubjectApi()
-        const ChengeUser = {
+        const ChangeUser = {
             username: faker.internet.username(),
             email: faker.internet.email(),
             password: faker.internet.password()
@@ -24,7 +24,7 @@ describe("Method PuT", () => {
         const requestPUT = api.requestHTTP({
             method: "PUT ",
             url: "/Users/1",
-            body: ChengeUser
+            body: ChangeUser
         });
 
         return requestPUT().then((res) => {

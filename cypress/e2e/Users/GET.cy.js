@@ -18,12 +18,12 @@ class SubjectApi {
 describe("MetHod GET", () => {
     it("Shold get all users", () => {
         const api = new SubjectApi()
-        const request = api.requestHTTP({
+        const requestGET = api.requestHTTP({
             method: "GET",
             url: "/Users"
         })
 
-        return request().then((res) => {
+        return requestGET().then((res) => {
             for (let i = 0; i < res.body.length; i++) {
                 cy.wrap(res.status).should("eq", 200)
                 cy.wrap(res.body[i]).should("include.keys", [

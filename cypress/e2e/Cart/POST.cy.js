@@ -31,6 +31,16 @@ describe("Method POST", () => {
         return requestPOST().then((res) => {
             cy.wrap(res.status).should("eq", 201)
             cy.wrap(res.body).should("have.keys", ["id", "userId", "products"])
+
+            const id = res.body.id
+
+            const requestGET = api.requestHTTP({
+                method: "GET",
+                url: `/carts/${id}`
+            })
+            return requestGET().then((res) => {
+                cy.wrap(res.status).should("eq", 200)
+            })
         });
     });
 });
