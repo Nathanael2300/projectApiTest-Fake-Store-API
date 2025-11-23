@@ -12,51 +12,42 @@ class SubjectApi {
 
 }
 
-
-
-
-describe("MetHod GET", () => {
-    it("Shold get all users", () => {
+describe("Method GET", () => {
+    it("Should get all products from the cart", () => {
         const api = new SubjectApi()
-        const request = api.requestHTTP({
+        const requestGET = api.requestHTTP({
             method: "GET",
-            url: "/Users"
-        })
+            url: "/carts"
+        });
 
-        return request().then((res) => {
+        return requestGET().then((res) => {
             for (let i = 0; i < res.body.length; i++) {
                 cy.wrap(res.status).should("eq", 200)
                 cy.wrap(res.body[i]).should("include.keys", [
-                    "address",
                     "id",
-                    "email",
-                    "username",
-                    "password",
-                    "name",
-                    "phone"
+                    "userId",
+                    "date",
+                    "products"
                 ]);
             }
-            cy.log("Quantidade de usuarios:", res.body.length)
-        });
+            cy.log("Quantidade de produtos:", res.body.length)
+        })
     });
 
-    it("Shold get one user of", () => {
+    it("Should get a product from the cart", () => {
         const api = new SubjectApi()
-        const request = api.requestHTTP({
+        const requestGET = api.requestHTTP({
             method: "GET",
-            url: "/Users/1"
+            url: "/carts/1"
         });
 
-        return request().then((res) => {
+        return requestGET().then((res) => {
             cy.wrap(res.status).should("eq", 200)
             cy.wrap(res.body).should("include.keys", [
-                "address",
                 "id",
-                "email",
-                "username",
-                "password",
-                "name",
-                "phone"
+                "userId",
+                "date",
+                "products"
             ]);
         });
     });

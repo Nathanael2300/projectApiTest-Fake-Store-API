@@ -19,11 +19,11 @@ describe("MetHod DELETE", () => {
             method: "DELETE",
             url: "/Users/1",
             failOnStatusCode: false
-        })
+        });
 
         return requestDELETE().then((res => {
             cy.wrap(res.status).should("eq", 200)
             cy.wrap(res.body).should("have.property", "id")
-        }))
+        }));
     });
 });

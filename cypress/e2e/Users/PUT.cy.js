@@ -25,11 +25,11 @@ describe("Method PuT", () => {
             method: "PUT ",
             url: "/Users/1",
             body: ChengeUser
-        })
+        });
 
         return requestPUT().then((res) => {
             cy.wrap(res.status).should("eq", 200)
             cy.wrap(res.body).should("include.keys", [ "email", "username", "password" ]);
-        })
+        });
     });
 });
