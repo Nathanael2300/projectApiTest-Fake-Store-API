@@ -9,7 +9,6 @@ class SubjectApi {
             });
         }
     }
-
 }
 
 describe("Method GET", () => {

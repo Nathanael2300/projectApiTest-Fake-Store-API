@@ -1,5 +1,4 @@
 import 'cypress-mochawesome-reporter/register';
-import { faker } from '@faker-js/faker';
 
 class SubjectApi {
     requestHTTP = ({ method, url, body }) => {
