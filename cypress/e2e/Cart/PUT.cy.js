@@ -31,7 +31,11 @@ describe("MetHod PUT", () => {
         });
         return requestPUT().then((res) => {
             cy.wrap(res.status).should("eq", 200);
-            cy.wrap(res.body).should("include.keys", [ "email", "username", "password" ]);
+            cy.wrap(res.body).should("include.keys", {
+                "id": changeCart.id,
+                "userId": changeCart.userId,
+                "products": changeCart.products
+            });
         });
     });
 });
