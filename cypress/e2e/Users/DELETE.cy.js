@@ -14,7 +14,7 @@ class SubjectApi {
 
 describe("MetHod DELETE", () => {
     it("Should delete a user", () => {
-        const api = new SubjectApi()
+        const api = new SubjectApi();
         const requestDELETE = api.requestHTTP({
             method: "DELETE",
             url: "/Users/1",

@@ -15,7 +15,7 @@ class SubjectApi {
 
 describe("MetHod PUT", () => {
     it("Should change the data of the user", () => {
-        const api = new SubjectApi()
+        const api = new SubjectApi();
         const changeCart = {
             id: 10,
             userId: 1,

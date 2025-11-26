@@ -34,7 +34,7 @@ describe("Method GET", () => {
     });
 
     it("Should get a product from the cart", () => {
-        const api = new SubjectApi()
+        const api = new SubjectApi();
         const requestGET = api.requestHTTP({
             method: "GET",
             url: "/carts/1"

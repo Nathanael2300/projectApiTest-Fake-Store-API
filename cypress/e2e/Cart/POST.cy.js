@@ -14,7 +14,7 @@ class SubjectApi {
 
 describe("Method POST", () => {
     it("Should to add a product in cart", () => {
-        const api = new SubjectApi()
+        const api = new SubjectApi();
         const createProduct = {
             id: 10,
             userId: 1,

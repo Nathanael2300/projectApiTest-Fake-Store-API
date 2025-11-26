@@ -15,7 +15,7 @@ class SubjectApi {
 
 describe("Method POST", () => {
     it("Should create a user", () => {
-        const api = new SubjectApi()
+        const api = new SubjectApi();
         const CreaterUser = {
             username: faker.internet.username(),
             email: faker.internet.email(),

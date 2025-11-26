@@ -17,7 +17,7 @@ class SubjectApi {
 
 describe("MetHod GET", () => {
     it("Shold get all users", () => {
-        const api = new SubjectApi()
+        const api = new SubjectApi();
         const requestGET = api.requestHTTP({
             method: "GET",
             url: "/Users"

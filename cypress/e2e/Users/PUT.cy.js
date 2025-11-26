@@ -15,7 +15,7 @@ class SubjectApi {
 
 describe("Method PuT", () => {
     it("Should change data of the user", () => {
-        const api = new SubjectApi()
+        const api = new SubjectApi();
         const ChangeUser = {
             username: faker.internet.username(),
             email: faker.internet.email(),
