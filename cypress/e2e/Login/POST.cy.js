@@ -24,10 +24,10 @@ describe("MetHod POST", () => {
             headers: { 'Content-Type': 'application/json' },
             body: credentials,
             failOnStatusCode: false
-        })
+        });
         return requestPOST().then((res) => {
             cy.wrap(res.status).should("eq", 200);
             cy.wrap(res.body).should("have.a.property", "token")
-        })
+        });
     });
 });
