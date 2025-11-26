@@ -27,7 +27,7 @@ describe("MetHod POST", () => {
         });
         return requestPOST().then((res) => {
             cy.wrap(res.status).should("eq", 200);
-            cy.wrap(res.body).should("have.a.property", "token")
+            cy.wrap(res.body).should("have.a.property", "token");
         });
     });
 });
