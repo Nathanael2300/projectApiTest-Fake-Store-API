@@ -26,15 +26,15 @@ describe("MetHod GET", () => {
         return requestGET().then((res) => {
             for (let i = 0; i < res.body.length; i++) {
                 cy.wrap(res.status).should("eq", 200)
-                cy.wrap(res.body[i]).should("include.keys", [
-                    "address",
-                    "id",
-                    "email",
-                    "username",
-                    "password",
-                    "name",
-                    "phone"
-                ]);
+                cy.wrap(res.body[i]).should("include.keys",{ 
+                    "address": res.address,
+                    "id": res.id,
+                    "email": res.email,
+                    "username": res.username,
+                    "password": res.password,
+                    "name": res.name,
+                    "phone": res.phone
+                });
             }
             cy.log("Quantidade de usuarios:", res.body.length)
         });

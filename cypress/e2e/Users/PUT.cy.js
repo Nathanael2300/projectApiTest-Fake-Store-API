@@ -22,14 +22,18 @@ describe("Method PuT", () => {
             password: faker.internet.password()
         }
         const requestPUT = api.requestHTTP({
-            method: "PUT ",
+            method: "PUT",
             url: "/Users/1",
             body: ChangeUser
         });
 
         return requestPUT().then((res) => {
             cy.wrap(res.status).should("eq", 200)
-            cy.wrap(res.body).should("include.keys", [ "email", "username", "password" ]);
+            cy.wrap(res.body).should("include.keys",  {
+                "email": res.email, 
+                "username": res.username, 
+                "password": res.password 
+            });
         });
     });
 });

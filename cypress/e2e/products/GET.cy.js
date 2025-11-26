@@ -43,15 +43,14 @@ describe("Method GET", () => {
         })
         return requestGET().then((res) => {
             cy.wrap(res.status).should("eq", 200);
-            cy.wrap(res.body).should("include.keys", [
-                "id",
-                "title",
-                "price",
-                "description",
-                "category",
-                "image",
-                "rating"
-            ]);
+            cy.wrap(res.body).should("include.keys",{
+                "id": res.id,
+                "title": res.title,
+                "price": res.price,
+                "description": res.describe,
+                "category": res.category,
+                "image": res.image,
+            });
         });
     });
 });

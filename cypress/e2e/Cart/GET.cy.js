@@ -22,12 +22,12 @@ describe("Method GET", () => {
         return requestGET().then((res) => {
             for (let i = 0; i < res.body.length; i++) {
                 cy.wrap(res.status).should("eq", 200)
-                cy.wrap(res.body[i]).should("include.keys", [
-                    "id",
-                    "userId",
-                    "date",
-                    "products"
-                ]);
+                cy.wrap(res.body[i]).should("include.keys", {
+                    "id": res.id,
+                    "userId": res.userId,
+                    "date": res.date,
+                    "products": res.products
+                });
             }
             cy.log("Quantidade de produtos:", res.body.length)
         });
@@ -42,12 +42,12 @@ describe("Method GET", () => {
 
         return requestGET().then((res) => {
             cy.wrap(res.status).should("eq", 200)
-            cy.wrap(res.body).should("include.keys", [
-                "id",
-                "userId",
-                "date",
-                "products"
-            ]);
+            cy.wrap(res.body).should("include.keys", {
+                "id": res.id,
+                "userId": res.userId,
+                "date": res.date,
+                "products": res.products
+            });
         });
     });
 });

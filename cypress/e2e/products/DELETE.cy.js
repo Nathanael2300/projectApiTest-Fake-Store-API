@@ -12,23 +12,24 @@ class SubjectApi {
     }
 }
 
-describe("MetHod DELETE", () => {
-    it("Should delete a product from the cart", () => {
+describe("Method DELETE", () => {
+    it("Should delete a product", () => {
         const api = new SubjectApi();
         const requestDELETE = api.requestHTTP({
             method: "DELETE",
-            url: "/carts/1",
+            url: "/products/1",
             failOnStatusCode: false
         });
-
         return requestDELETE().then((res) => {
-            cy.wrap(res.status).should("eq", 200)
-            cy.wrap(res.body).should("include.keys", {
+            cy.wrap(res.status).should("eq", 200);
+            cy.wrap(res.body).should("include.keys",{
                 "id": res.id,
-                "userId": res.userId,
-                "date": res.date,
-                "products": res.products
+                "title": res.title,
+                "price": res.price,
+                "description": res.describe,
+                "category": res.category,
+                "image": res.image,
             });
-        });
+        })
     });
 });
