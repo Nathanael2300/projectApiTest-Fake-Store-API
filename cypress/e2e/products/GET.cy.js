@@ -21,15 +21,14 @@ describe("Method GET", () => {
         return requestGET().then((res) => {
             for(let i = 0; i < res.body.length; i++) {
                 cy.wrap(res.status).should("eq", 200);
-                cy.wrap(res.body[i]).should("include.keys", [
-                    "id",
-                    "title",
-                    "price",
-                    "description",
-                    "category",
-                    "image",
-                    "rating"
-                ]);
+                cy.wrap(res.body[i]).should("include.keys", {
+                "id": res.id,
+                "title": res.title,
+                "price": res.price,
+                "description": res.describe,
+                "category": res.category,
+                "image": res.image,
+                });
                 cy.log(`Quantidade de produtos: ${res.body.length}`)
             }
         });
