@@ -1,14 +1,12 @@
 import 'cypress-mochawesome-reporter/register';
 
 class SubjectApi {
-    requestHTTP = ({ method, url }) => {
-        return () => {
-            return cy.api({
-                method,
-                url,
-            });
-        }
-    }
+  requestHTTP = ({ method, url }) => {
+    return cy.api({
+      method,
+      url,
+    });
+  };
 }
 
 describe("Method GET", () => {
