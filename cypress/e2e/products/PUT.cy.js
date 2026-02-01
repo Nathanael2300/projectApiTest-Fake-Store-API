@@ -2,15 +2,13 @@ import 'cypress-mochawesome-reporter/register';
 import { faker } from '@faker-js/faker';
 
 class SubjectApi {
-    requestHTTP = ({ method, url, body }) => {
-        return () => {
-            return cy.api({
-                method,
-                url,
-                body
-            });
-        }
-    }
+  requestHTTP = ({ method, url, body }) => {
+    return cy.api({
+      method,
+      url,
+      body,
+    });
+  };
 }
 
 describe("Method PUT", () => {
