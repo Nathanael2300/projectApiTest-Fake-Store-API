@@ -1,16 +1,14 @@
 import 'cypress-mochawesome-reporter/register';
 
 class SubjectApi {
-    requestHTTP = ({ method, url, body, failOnStatusCode }) => {
-        return () => {
-            return cy.api({
-                method,
-                url,
-                body,
-                failOnStatusCode
-            });
-        }
-    }
+  requestHTTP = ({ method, url, body, failOnStatusCode }) => {
+    return cy.api({
+      method,
+      url,
+      body,
+      failOnStatusCode,
+    });
+  };
 }
 
 describe("MetHod POST", () => {
