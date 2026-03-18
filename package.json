@@ -22,8 +22,5 @@
     "cypress": "^15.12.0",
     "cypress-mochawesome-reporter": "^4.0.2",
     "cypress-plugin-api": "^2.11.2"
-  },
-  "dependencies": {
-    "ajv": "^8.18.0"
   }
 }
