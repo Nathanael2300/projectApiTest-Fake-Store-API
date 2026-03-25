@@ -1,57 +1,41 @@
-import 'cypress-mochawesome-reporter/register';
+import "cypress-mochawesome-reporter/register";
+import usersService from "../../support/service/users.service";
+import { usersFactory } from "../../support/factory/users.factory";
+import { usersSchema } from "../../schemas/users.schema";
+import { userSchema } from "../../schemas/user.schema";
+import { validateSchema } from "../../support/schemaValidator";
 
-class SubjectApi {
-  requestHTTP = ({ method, url }) => {
-    return cy.api({
-      method,
-      url,
+describe("GET /Users", () => {
+  it("Should get all users successfully", () => {
+    return usersService.getAllUsers().then((getListUsersRes) => {
+      expect(getListUsersRes.status).to.eql(200);
+      expect(getListUsersRes.body).to.be.an("array");
+
+      const result = validateSchema(usersSchema, getListUsersRes.body);
+      expect(result.valid, JSON.stringify(result.errors, null, 2)).to.eql(true);
     });
-  };
-}
+  });
 
-describe("MetHod GET", () => {
-    it("Shold get all users", () => {
-        const api = new SubjectApi();
-        const requestGET = api.requestHTTP({
-            method: "GET",
-            url: "/Users"
-        })
+  it("Should get a user off the list successfully", () => {
+    const userData = usersFactory.dataValidUsers();
+    return usersService
+      .createUsers(userData)
+      .then((createRes) => {
+        expect(createRes.body).to.be.an("object");
+        expect(createRes.status).to.eql(201);
 
-        return requestGET().then((res) => {
-            for (let i = 0; i < res.body.length; i++) {
-                cy.wrap(res.status).should("eq", 200)
-                cy.wrap(res.body[i]).should("include.keys",{ 
-                    "address": res.address,
-                    "id": res.id,
-                    "email": res.email,
-                    "username": res.username,
-                    "password": res.password,
-                    "name": res.name,
-                    "phone": res.phone
-                });
-            }
-            cy.log("Quantidade de usuarios:", res.body.length)
-        });
-    });
+        const userId = createRes.body.id;
 
-    it("Shold get one user of", () => {
-        const api = new SubjectApi()
-        const request = api.requestHTTP({
-            method: "GET",
-            url: "/Users/1"
-        });
+        return usersService.getUsersById(userId);
+      })
+      .then((getListUsersRes) => {
+        expect(getListUsersRes.status).to.eql(200);
+        expect(getListUsersRes.body).to.be.an("object");
 
-        return request().then((res) => {
-            cy.wrap(res.status).should("eq", 200)
-            cy.wrap(res.body).should("include.keys", [
-                "address",
-                "id",
-                "email",
-                "username",
-                "password",
-                "name",
-                "phone"
-            ]);
-        });
-    });
+        const result = validateSchema(userSchema, getListUsersRes.body);
+        expect(result.valid, JSON.stringify(result.errors, null, 2)).to.eql(
+          true,
+        );
+      });
+  });
 });

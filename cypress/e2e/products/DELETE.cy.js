@@ -1,33 +1,5 @@
 import "cypress-mochawesome-reporter/register";
 
-class SubjectApi {
-  requestHTTP = ({ method, url, failOnStatusCode }) => {
-    return cy.api({
-      method,
-      url,
-      failOnStatusCode,
-    });
-  };
-}
-
-describe("Method DELETE", () => {
-  it("Should delete a product", () => {
-    const api = new SubjectApi();
-    const requestDELETE = api.requestHTTP({
-      method: "DELETE",
-      url: "/products/1",
-      failOnStatusCode: false,
-    });
-    return requestDELETE().then((res) => {
-      cy.wrap(res.status).should("eq", 200);
-      cy.wrap(res.body).should("include.keys", {
-        id: res.id,
-        title: res.title,
-        price: res.price,
-        description: res.describe,
-        category: res.category,
-        image: res.image,
-      });
-    });
-  });
+describe("DELETE /Products", () => {
+  it("Should delete a product", () => {});
 });

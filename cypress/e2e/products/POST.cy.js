@@ -1,50 +1,34 @@
-import 'cypress-mochawesome-reporter/register';
-import { faker } from '@faker-js/faker';
+import "cypress-mochawesome-reporter/register";
+import productsService from "../../support/service/products.service";
+import { productsFactory } from "../../support/factory/products.factory";
 
-class SubjectApi {
-  requestHTTP = ({ method, url, body }) => {
-    return cy.api({
-      method,
-      url,
-      body,
-    });
-  };
-}
+describe("POST /Products", () => {
+  it("Should to create a product successfully", () => {
+    const productData = productsFactory.dataValidProducts();
 
-describe("MetHod POST", () => {
-    it("Should to create a product", () => {
-        const api = new SubjectApi();
-        const createProduct = {
-            id: faker.number.int({ min: 1, max: 100 }),
-            title: faker.commerce.productName(),
-            price: 10.0,
-            description: "test",
-            category: faker.commerce.department(),
-            image: faker.image.url()
-        }
-        const requestPOST = api.requestHTTP({
-            method: "POST",
-            url: "/products",
-            body: createProduct,
-        });
-        return requestPOST().then((res) => {
-            cy.wrap(res.status).should("eq", 201);
-            cy.wrap(res.body).should("include.keys",{
-                "id": res.id,
-                "title": res.title,
-                "price": res.price,
-                "description": res.describe,
-                "category": res.category,
-                "image": res.image,
-            });
-            const id = res.body.id
-            const requestGET = api.requestHTTP({
-                    method: "GET",
-                    url: `/products/${id}`
-            })
-            return requestGET().then((res) => {
-                cy.wrap(res.status).should("eq", 200);
-            });
-        });
-    });
+    return productsService
+      .createProducts(productData)
+      .then((createRes) => {
+        expect(createRes.status).to.eql(201);
+        expect(createRes.body).to.have.property("id");
+        expect(createRes.body).to.be.an("object");
+
+        const productId = createRes.body.id;
+        return productsService
+          .getProductsById(productId)
+          .then((getProductById) => {
+            return { getProductById, productId };
+          });
+      })
+      .then(({ getProductById, productId }) => {
+        expect(getProductById.status).to.eql(200);
+
+        return productsService.deleteProducts(productId);
+      })
+      .then((deleteRes) => {
+        expect(deleteRes.status).to.eql(200);
+      });
+  });
+
+  it("Should not create a product", () => {});
 });

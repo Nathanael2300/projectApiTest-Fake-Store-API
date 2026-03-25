@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 
 export const cartsFactory = {
-  dataCarts(overrides = {}) {
+  dataCarts(override = {}) {
     return [
       {
         id: faker.number.int(),
@@ -10,7 +10,7 @@ export const cartsFactory = {
         description: faker.commerce.productDescription(),
         category: faker.commerce.department(),
         image: faker.image.url(),
-        ...overrides,
+        ...override,
       },
     ];
   },

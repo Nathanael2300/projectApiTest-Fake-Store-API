@@ -23,6 +23,15 @@ class ProductsService {
     });
   }
 
+  updateProducts(id, data, options = {}) {
+    return cy.api({
+      method: "PUT",
+      url: `/users/${id}`,
+      body: data,
+      failOnStatusCode: options.failOnStatusCode ?? true,
+    });
+  }
+
   deleteProducts(id, options = {}) {
     return cy.api({
       method: "DELETE",
