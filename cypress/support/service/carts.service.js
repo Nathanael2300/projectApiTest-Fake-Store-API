@@ -40,3 +40,5 @@ class CartsService {
     });
   }
 }
+
+export default new CartsService();
